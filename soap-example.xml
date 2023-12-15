@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="7d357671-5e6b-4822-beaa-42746572b02a" activeEnvironment="Default" name="Learning test" resourceRoot="" soapui-version="5.7.2" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="933410f5-e0ca-4220-8778-e40271681d06" wsaVersion="NONE" name="SoapServiceSoap" type="wsdl" bindingName="{http://localhost:52774/csp/learning}SoapServiceSoap" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/lperezra/Documents/Varios/soapLearning.txt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\C:\Users\lperezra\Documents\Varios\soapLearning.txt"><con:part><con:url>file:\C:\Users\lperezra\Documents\Varios\soapLearning.txt</con:url><con:content><![CDATA[<definitions targetNamespace="http://localhost:52774/csp/learning" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://localhost:52774/csp/learning" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost:52774/csp/learning">
+      <s:element name="SaveVivienda">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="vivienda" type="s0:Vivienda"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Chalet">
+        <s:complexContent>
+          <s:extension base="s0:Vivienda">
+            <s:sequence>
+              <s:element minOccurs="0" name="Jardin" type="s:boolean"/>
+              <s:element minOccurs="0" name="Piscina" type="s:boolean"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Vivienda">
+        <s:sequence>
+          <s:element minOccurs="0" name="Habitaciones" type="s:long"/>
+          <s:element minOccurs="0" name="Ascensor" type="s:boolean"/>
+          <s:element minOccurs="0" name="Garaje" type="s:boolean"/>
+          <s:element minOccurs="0" name="CodigoPostal" type="s:string"/>
+          <s:element minOccurs="0" name="Superficie" type="s:long"/>
+          <s:element minOccurs="0" name="Aseos" type="s:long"/>
+          <s:element minOccurs="0" name="Precio" type="s:long"/>
+          <s:element minOccurs="0" name="PrecioObjetivo" type="s:long"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveViviendaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SaveViviendaResult" type="s:long"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="SaveViviendaSoapIn">
+    <part name="parameters" element="s0:SaveVivienda"/>
+  </message>
+  <message name="SaveViviendaSoapOut">
+    <part name="parameters" element="s0:SaveViviendaResponse"/>
+  </message>
+  <portType name="SoapServiceSoap">
+    <operation name="SaveVivienda">
+      <input message="s0:SaveViviendaSoapIn"/>
+      <output message="s0:SaveViviendaSoapOut"/>
+    </operation>
+  </portType>
+  <binding name="SoapServiceSoap" type="s0:SoapServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="SaveVivienda">
+      <soap:operation soapAction="http://localhost:52774/csp/learning/LEARNING.WS.SoapService.SaveVivienda" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="SoapService">
+    <port name="SoapServiceSoap" binding="s0:SoapServiceSoap">
+      <soap:address location="http://localhost:52774/csp/learning/LEARNING.WS.SoapService.cls"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:52774/csp/learning/LEARNING.WS.SoapService.cls</con:endpoint></con:endpoints><con:operation id="8830e5d5-ecfd-4b5f-b3ef-a5163ca5f3bf" isOneWay="false" action="http://localhost:52774/csp/learning/LEARNING.WS.SoapService.SaveVivienda" name="SaveVivienda" bindingOperationName="SaveVivienda" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="707f1439-4cc9-4231-bef4-12dc9bf5b392" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:52774/csp/learning/LEARNING.WS.SoapService.cls</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:lear="http://localhost:52774/csp/learning">\r
+   <soapenv:Header>
+   	<Security xmlns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+		<UsernameToken>
+			<Username>_SYSTEM</Username>
+			<Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">SYS</Password>
+		</UsernameToken>
+	</Security>
+   </soapenv:Header>
+   <soapenv:Body>\r
+      <lear:SaveVivienda>\r
+         <!--Optional:-->\r
+         <lear:vivienda>\r
+            <!--Optional:-->\r
+            <lear:Habitaciones>3</lear:Habitaciones>\r
+            <!--Optional:-->\r
+            <lear:Ascensor>1</lear:Ascensor>\r
+            <!--Optional:-->\r
+            <lear:Garaje>1</lear:Garaje>\r
+            <!--Optional:-->\r
+            <lear:CodigoPostal>28005</lear:CodigoPostal>\r
+            <!--Optional:-->\r
+            <lear:Superficie>120</lear:Superficie>\r
+            <!--Optional:-->\r
+            <lear:Aseos>1</lear:Aseos>\r
+            <!--Optional:-->\r
+            <lear:Precio>322000</lear:Precio>\r
+            <!--Optional:-->\r
+            <lear:PrecioObjetivo></lear:PrecioObjetivo>\r
+         </lear:vivienda>\r
+      </lear:SaveVivienda>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>superuser</con:username><con:password>SYS</con:password><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:52774/csp/learning/LEARNING.WS.SoapService.SaveVivienda"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

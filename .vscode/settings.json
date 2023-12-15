@@ -1,0 +1,11 @@
+{
+    "objectscript.conn": {
+        "server": "docker",
+        "active": true,
+        "host": "localhost",
+        "port": 52774,
+        "ns": "LEARNING",
+        "username": "superuser",
+        "password": "SYS"
+    }
+}

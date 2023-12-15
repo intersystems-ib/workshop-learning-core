@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26" zv="IRIS for UNIX (Ubuntu Server LTS for x86-64 Containers) 2023.2 (Build 202U)" ts="2023-06-19 09:50:52">
+<Document name="ValorZona.LUT">
+<lookupTable>
+<entry table="ValorZona" key="28001">4500</entry>
+<entry table="ValorZona" key="28002">4150</entry>
+<entry table="ValorZona" key="28003">4000</entry>
+<entry table="ValorZona" key="28004">3850</entry>
+<entry table="ValorZona" key="28005">3520</entry>
+<entry table="ValorZona" key="28006">3105</entry>
+<entry table="ValorZona" key="28007">2850</entry>
+<entry table="ValorZona" key="28008">2520</entry>
+<entry table="ValorZona" key="28009">2300</entry>
+</lookupTable>
+</Document></Export>

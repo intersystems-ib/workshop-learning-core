@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "docker:LEARNING",
+			"uri": "isfs://docker:learning/"
+		}
+	],
+	"settings": {}
+}
