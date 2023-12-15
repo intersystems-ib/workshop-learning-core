@@ -16,10 +16,11 @@ Dicha clase contendrá la información de las viviendas a la venta que son gesti
 - Habitaciones: de tipo Integer.
 - Ascensor: de tipo Boolean.
 - Garaje: de tipo Boolean.
-- Código Postal: de tipo String.
+- CodigoPostal: de tipo String.
 - Superficie: de tipo Integer.
 - Aseos: de tipo Integer.
 - Precio: de tipo Integer.
+- PrecioObjetivo: de tipo Integer.
 
 ###Comercial
 Responsable de guardar la información del comercial responsable de la venta de las viviendas.
@@ -32,9 +33,35 @@ Información de la ciudad en la que se ubica la vivienda.
 - Población: de tipo Integer.
 
 ##Ejercicio 1.
-Crea dos instancias de la clase Vivienda, la primera con el código postal 28001 y la segunda con el código postal 28008
+Crea dos instancias de la clase Vivienda, la primera con el código postal 28001 y la segunda con el código postal 28008, no es necesario que definas ninguna propiedad más.
 
-##Métodos de clase y de instancia
-##Clases persistentes y de tipo serial
+**Ejemplo**
+> LEARNING> set vivienda1 = ##class(LEARNING.Object.Vivienda).%New()
+> LEARNING> set vivienda1.CodigoPostal = 28001
+
+Por el momento no será necesario que persistas estas viviendas en la base de datos, dejémoslas en memoria. Si todo ha funcionado correctamente ejecutando *w vivienda1* debería mostrar el siguiente mensaje:
+> 1@LEARNING.Object.Vivienda
+
+Perfecto, puedes borrar las instancias creadas ejecutando el comando *kill*
+
+##Métodos de instancia y métodos de clase
+Nuestra inmobiliaria está interesada en conocer una valoración objetiva del valor de la vivienda, para ello ha creado una tabla Lookup con el precio medio del metro cuadrado en cada zona de la ciudad. Puedes echar un vistazo al fichero **/src/Lookup/ValorZona.xml**.
+
+Crea un método instancia llamado **CalculaPrecioBasico** que acepte un atributo por referencia llamado **precioEstimado** de tipo Integer. Este método deberá calcular el precio estimado para la vivienda conforme a sus características y la zona en la que se encuentra. El cálculo obtenido se grabará en la propiedad **PrecioObjetivo** y en la variable pasada por referencia **precioEstimado**
+
+Puedes copiar el cálculo del precio de aquí:
+> ..Superficie * ^Ens.LookupTable("ValorZona",..CodigoPostal) * (1.1 * ..Garaje) * (1.05 * ..Ascensor)
+
+##Ejercicio 2.1:
+Debes crear una nueva instancia de la clase **LEARNING.Object.Vivienda** con los siguientes valores en sus propiedades:
+- Habitaciones: 3
+- Ascensor: 1
+- Garaje: 1
+- CodigoPostal: 28002
+- Superficie: 112
+- Aseos: 2
+- Precio: 390000
+A continuación debes obtener el precio estimado para dicha vivienda. Si lo has hecho correctamente el valor estimado será:
+> 536844
 
 
