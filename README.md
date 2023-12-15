@@ -71,4 +71,17 @@ A continuación debes obtener el precio estimado para dicha vivienda. Si lo has 
 **Resultado**
 > 536844
 
+## Ejercicio 2.2
+Ahora vamos a probar a crear un método de clase que nos sirva para consultar el precio medio del suelo para un determinado código postal. El método de clase se denominará **ConsultaPrecioSuelo** y admitirá un parámetro **codigoPostal** de tipo String y una variable por referencia **resultadoPrecio** de tipo Integer en la que el método nos devolverá el resultado de la consulta.
+Para obtener el valor de la Lookup table sólo tienes que llamar al siguiente método:
 
+**Consulta**
+> ^Ens.LookupTable("ValorZona",..VariablePorReferencia)
+
+Si habéis implementado correctamente el método los siguientes comandos deberían devolveros el mismo resultado:
+
+**Invocación**
+> LEARNING>do ##class(LEARNING.Object.Vivienda).ConsultaPrecioSuelo("28002",.resultadoPrecio)
+>
+> LEARNING>w resultadoPrecio
+> 4150
