@@ -32,7 +32,7 @@ Información de la ciudad en la que se ubica la vivienda.
 - Nombre: de tipo String.
 - Población: de tipo Integer.
 
-## Ejercicio 1
+## Ejercicio 1.1
 Crea dos instancias de la clase Vivienda, la primera con el código postal 28001 y la segunda con el código postal 28008, no es necesario que definas ninguna propiedad más.
 
 **Ejemplo**
@@ -50,12 +50,20 @@ Perfecto, puedes borrar las instancias creadas ejecutando el comando *kill*
 ## 2. Métodos de instancia y métodos de clase
 Nuestra inmobiliaria está interesada en conocer una valoración objetiva del valor de la vivienda, para ello ha creado una tabla Lookup con el precio medio del metro cuadrado en cada zona de la ciudad. Puedes echar un vistazo al fichero **/src/Lookup/ValorZona.xml**.
 
-Crea un método instancia llamado **CalculaPrecioBasico** que acepte un atributo por referencia llamado **precioEstimado** de tipo Integer. Este método deberá calcular el precio estimado para la vivienda conforme a sus características y la zona en la que se encuentra. El cálculo obtenido se grabará en la propiedad **PrecioObjetivo** y en la variable pasada por referencia **precioEstimado**
+Crea un método instancia llamado **CalculaPrecioEstimado** que acepte un atributo por referencia llamado **precioEstimado** de tipo Integer. Este método deberá calcular el precio estimado para la vivienda conforme a sus características y la zona en la que se encuentra. El cálculo obtenido se grabará en la propiedad **PrecioObjetivo** y en la variable pasada por referencia **precioEstimado**
 
 Puedes copiar el cálculo del precio de aquí:
 
 **Cálculo**
-> ..Superficie * ^Ens.LookupTable("ValorZona",..CodigoPostal) * (1.1 * ..Garaje) * (1.05 * ..Ascensor)
+> set ..PrecioObjetivo = ..Superficie * ^Ens.LookupTable("ValorZona",..CodigoPostal) 
+> if (..Garaje)
+> {
+>   set ..PrecioObjetivo = ..PrecioObjetivo * 1.1
+> }
+> if (..Ascensor)
+> {
+>   set ..PrecioObjetivo = ..PrecioObjetivo * 1.05
+> }
 
 ## Ejercicio 2.1
 Debes crear una nueva instancia de la clase **LEARNING.Object.Vivienda** con los siguientes valores en sus propiedades:
@@ -66,9 +74,13 @@ Debes crear una nueva instancia de la clase **LEARNING.Object.Vivienda** con los
 - Superficie: 112
 - Aseos: 2
 - Precio: 390000
+
 A continuación debes obtener el precio estimado para dicha vivienda. Si lo has hecho correctamente el valor estimado será:
 
 **Resultado**
+> LEARNING>do vivienda1.CalculaPrecioEstimado(.precioEstimado)
+> 
+> LEARNING>w precioEstimado
 > 536844
 
 ## Ejercicio 2.2
@@ -85,3 +97,50 @@ Si habéis implementado correctamente el método los siguientes comandos deberí
 >
 > LEARNING>w resultadoPrecio
 > 4150
+
+Una vez finalizado ejecuta el comando kill
+
+## 3. Herencia
+Nuestra inmobiliaria quiere empezar a gestionar un tipo de viviendas más especializado como es el caso de los chalets, tenemos definida la clase **LEARNING.Object.Chalet** que extiende de **LEARNING.Object.Vivienda**. Necesita añadir unas nuevas propiedades que contemplen sus particularidades. Estas propiedades son:
+- Jardín: de tipo Boolean.
+- Piscina: de tipo Boolean.
+
+También se necesita sobrescribir el método de instancia **CalculaPrecioEstimado** para que al precio calculado se le sume el criterio de la piscina y el jardín. Para ello se sumará al cálculo del precio estimado el resultado de la siguiente operación:
+
+**Sobreescritura**
+> if (..Piscina)
+> {
+>   set ..PrecioObjetivo = ..PrecioObjetivo * 1.2
+> }
+> if (..Jardin)
+> {
+>   set ..PrecioObjetivo = ..PrecioObjetivo * 1.15
+> }
+
+
+## Ejercicio 3.1
+Vamos a crear un nuevo objeto, en este caso de la clase **LEARNING.Object.Chalet** con las siguientes características:
+- Habitaciones: 4
+- Ascensor: 0
+- Garaje: 1
+- CodigoPostal: 28004
+- Superficie: 180
+- Aseos: 3
+- Precio: 463400
+- Jardín: 1
+- Piscina: 0
+
+Con estos datos y el método de instancia **CalculaPrecioEstimado** sobreescrito deberías obtener el siguiente valor estimado:
+
+**Resultado**
+> LEARNING>do chalet1.CalculaPrecioEstimado(.precioEstimado)
+> 
+> LEARNING>w precioEstimado
+> 876645
+
+## 4. Relaciones entre clases
+Para nuestra aplicación necesitamos relacionar las viviendas en nuestra base de datos con los comerciales que van a ser los encargados de gestionar su venta, de tal forma que una vivienda corresponda a un único comercial (y así evitar conflictos entre los comerciales) y un comercial pueda tener asignadas múltiples viviendas.
+Recuerda que las relaciones se definen con la palabra clave **Relationship**
+
+## Ejercicio 4.1
+Deberás crear una relación One-to-Many entre las clases Comercial y Vivienda. Con las re
