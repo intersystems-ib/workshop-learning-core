@@ -33,7 +33,17 @@ ClassMethod OnHandleCorsRequest(url As %String) As %Status
 
 ClassMethod GetVivienda(id As %Integer) As %Status
 {
+    Try {
+        Do ##class(%REST.Impl).%SetContentType("application/json")
+        If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
+        //CODE
+    
+    } Catch (ex) {
+        Do ##class(%REST.Impl).%SetStatusCode("400")
+        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
+        return {"errormessage": "Client error"}
+    }
     Quit $$$OK
 }
 
@@ -41,28 +51,62 @@ ClassMethod GetVivienda(id As %Integer) As %Status
 
 ClassMethod SaveVivienda() As %Status
 {
-
-    Quit $$$OK
+    Try {
+        Do ##class(%REST.Impl).%SetContentType("application/json")
+        If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
+    
+        //CODE
+    
+    } Catch (ex) {
+        Do ##class(%REST.Impl).%SetStatusCode("400")
+        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
+        return {"errormessage": "Client error"}
+    }
 }
 
 ClassMethod SavePlano() As %Status
 {
+    Try {
+        Do ##class(%REST.Impl).%SetContentType("application/json")
+        If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
-    Quit $$$OK
+        //CODE
+    
+    } Catch (ex) {
+        Do ##class(%REST.Impl).%SetStatusCode("400")
+        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
+        return {"errormessage": "Client error"}
+    }
 }
-
-// Class method to receive person data to persist in our database
 
 ClassMethod SaveComercial() As %Status
 {
+    Try {
+        Do ##class(%REST.Impl).%SetContentType("application/json")
+        If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
-    Quit $$$OK
+        //CODE
+    
+    } Catch (ex) {
+        Do ##class(%REST.Impl).%SetStatusCode("400")
+        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
+        return {"errormessage": "Client error"}
+    }
 }
 
 ClassMethod SaveCiudad() As %Status
 {
+    Try {
+        Do ##class(%REST.Impl).%SetContentType("application/json")
+        If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
-    Quit $$$OK
+        //CODE
+    
+    } Catch (ex) {
+        Do ##class(%REST.Impl).%SetStatusCode("400")
+        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
+        return {"errormessage": "Client error"}
+    }
 }
 
 }
