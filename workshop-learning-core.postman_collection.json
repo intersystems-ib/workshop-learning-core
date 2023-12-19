@@ -7,6 +7,31 @@
 	},
 	"item": [
 		{
+			"name": "Recupera vivienda",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:52774/api/learning/getVivienda/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "52774",
+					"path": [
+						"api",
+						"learning",
+						"getVivienda",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Graba plano",
 			"request": {
 				"auth": {
@@ -49,7 +74,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"Nombre\": \"José Luis\",\r\n    \"Apellidos\": \"Sánchez Contreras\"\r\n}",
+					"raw": "{\r\n    \"Nombre\": \"José Luis\",\r\n    \"Apellidos\": \"Sánchez Contreras\",\r\n    \"DNI\": \"12345678A\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -57,7 +82,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:52774/api/learning/savePlano",
+					"raw": "http://localhost:52774/api/learning/saveComercial",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -66,7 +91,7 @@
 					"path": [
 						"api",
 						"learning",
-						"savePlano"
+						"saveComercial"
 					]
 				}
 			},

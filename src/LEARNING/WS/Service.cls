@@ -1,6 +1,12 @@
 Class LEARNING.WS.Service Extends %CSP.REST
 {
 
+Parameter CHARSET = "utf-8";
+
+Parameter CONVERTINPUTSTREAM = 1;
+
+Parameter CONTENTTYPE = "application/json";
+
 Parameter HandleCorsRequest = 0;
 
 XData UrlMap [ XMLNamespace = "https://www.intersystems.com/urlmap" ]
@@ -34,7 +40,6 @@ ClassMethod OnHandleCorsRequest(url As %String) As %Status
 ClassMethod GetVivienda(id As %Integer) As %Status
 {
     Try {
-        Do ##class(%REST.Impl).%SetContentType("application/json")
         If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
         //CODE
@@ -52,7 +57,6 @@ ClassMethod GetVivienda(id As %Integer) As %Status
 ClassMethod SaveVivienda() As %Status
 {
     Try {
-        Do ##class(%REST.Impl).%SetContentType("application/json")
         If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
         //CODE
@@ -67,7 +71,6 @@ ClassMethod SaveVivienda() As %Status
 ClassMethod SavePlano() As %Status
 {
     Try {
-        Do ##class(%REST.Impl).%SetContentType("application/json")
         If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
         //CODE
@@ -82,7 +85,6 @@ ClassMethod SavePlano() As %Status
 ClassMethod SaveComercial() As %Status
 {
     Try {
-        Do ##class(%REST.Impl).%SetContentType("application/json")
         If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
         //CODE
@@ -97,7 +99,6 @@ ClassMethod SaveComercial() As %Status
 ClassMethod SaveCiudad() As %Status
 {
     Try {
-        Do ##class(%REST.Impl).%SetContentType("application/json")
         If '##class(%REST.Impl).%CheckAccepts("application/json") Do ##class(%REST.Impl).%ReportRESTError(..#HTTP406NOTACCEPTABLE,$$$ERROR($$$RESTBadAccepts)) Quit
     
         //CODE
