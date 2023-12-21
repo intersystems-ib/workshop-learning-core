@@ -63,13 +63,21 @@ Puedes copiar el cálculo del precio de aquí:
 
 **Cálculo**
 > set ..PrecioObjetivo = ..Superficie * ^Ens.LookupTable("ValorZona",..CodigoPostal) 
+>
 > if (..Garaje)
+>
 > {
+>
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.1
+>
 > }
+>
 > if (..Ascensor)
+>
 > {
+>
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.05
+>
 > }
 
 ## Ejercicio 2
@@ -120,12 +128,19 @@ También se necesita sobrescribir el método de instancia **CalculaPrecioEstimad
 
 **Sobreescritura**
 > if (..Piscina)
+>
 > {
+>
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.2
+>
 > }
+>
 > if (..Jardin)
+>
 > {
+>
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.15
+>
 > }
 
 
@@ -202,24 +217,77 @@ El proyecto por defecto va a configurar una aplicación web para las pruebas cuy
 Nuestro proyecto debe de proporcionar la posibilidad de recuperar la información relativa a las clases que se almacenan en nuestro sistema, para ello debe implementar los enrutamientos necesarios para gestionar las llamadas de tipo GET que reciba. Estos tipos de llamadas recibirán un parámetro en su URL, por lo general un identificador que, como puedes observar en el método al que redirige, se pasará como parámetro de entrada.
 
 ## 2.2. Invocando llamadas PUT/POST
-Al igual que en el caso de las llamadas GET ya disponemos en **LEARNING.WS.Service** de unos enrutamientos configurados para gestionar llamadas POST. Lo particular de estas llamadas es que la información que se remite a nuestro sistema viene en el cuerpo de la llamada. En los ejemplos incluidos estos datos vienen en formato JSON.
+Al igual que en el caso de las llamadas GET ya disponemos en **LEARNING.WS.Service** de unos enrutamientos configurados para gestionar llamadas POST. Lo particular de estas llamadas es que la información que se remite a nuestro sistema viene en el cuerpo de la llamada. En los ejemplos incluidos estos datos vienen en formato JSON. Es recomendable hacer uso de variables de tipo **DynamicObject**
 
 ## Ejercicio 6
-Implementa el método GetVivienda para poder retornar al POSTMAN los datos de la vivienda registrada con identificador 1. No olvides retornar la información de la vivienda en formato JSON. El resultado debería ser parecido a esta imagen:
+Implementa el método GetVivienda para poder retornar a POSTMAN los datos de la vivienda registrada con identificador 1. No olvides retornar la información de la vivienda en formato JSON. El resultado debería ser parecido a esta imagen:
 ![alt text](/images/getVivienda.png)
+Una vez implementado deberás ejecutar desde POSTMAN la llamada *Ejercicio 6 - Recupera vivienda*.
 
 ## Ejercicio 7
-Implementa los métodos para poder registrar a los comerciales **SaveComercial** a las ciudades **SaveCiudad** y a las viviendas **SaveVivienda**. Puedes ver los atributos de objeto que se enviará desde el POSTMAN consultando el body de la llamada:
+Implementa los métodos para poder registrar a los comerciales **SaveComercial** a las ciudades **SaveCiudad**. Puedes ver los atributos de objeto que se enviará desde el POSTMAN consultando el body de la llamada:
 ![alt text](/images/saveVivienda.png)
-Como puedes ver en el caso de SaveVivienda la información de la ciudad y el comercial asignado a la vivienda vienen informados ya por su identificador en el sistema. Para probar este ejercicio debes asegurarte primero que hayas guardado una ciudad y un comercial antes de intentar guardar la vivienda.
-Si en tu caso tu caso tanto el comercial como la vivienda tienen otros identificadores puedes modificar la llamada del POSTMAN para que se adapte a tu entorno.
-Puedes echar un vistazo a la documentación oficial para ver como asignar referencias a otros objetos mediante el uso del ID [aquí](https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GOBJ_propmethods#GOBJ_propmethods_accessors_obj)
+Cando concluyas la implementación deberás lanzar las llamadas *Ejercicio 7 - Graba comercial* y *Ejercicio 7 - Graba vivienda*
 
 # 3. SQL
 
 En este tema vas a poder repasar como ejecutar consultas de SQL sobre nuestra base de datos utilizando Dynamic SQL. Podrás ver como definir una SQL, utilizar la clase **%SQL.Statement** para la preparación y ejecución de la query y finalmente recorrer los resultados de la consulta.
-Para nuestro proyecto va a ser necesario controlar que no registremos valores duplicados en el sistema, por lo que será necesario realizar una validación previa al registro que se realiza desde los métodos que reciben llamadas POST en nuestra clase **LEARNING.WS.Service**
+Para nuestro proyecto va a ser necesario controlar que no registremos valores duplicados en el sistema, por lo que será necesario realizar una validación previa al registro que se realiza desde los métodos que reciben llamadas POST en nuestra clase **LEARNING.WS.Service**. También vamos a lanzar consultas mediante Embedded SQL para obtener identificadores de los objetos persistidos en nuestra base de datos.
 
 ## Ejercicio 8
 Deberás incluir una comprobación previa para el método **SaveComercial** de la clase **LEARNING.WS.Service** para validar que no existe ningún comercial ya registrado con el DNI. Deberás utilizar la funcionalidad de Dynamic SQL para preparar y ejecutar la consulta. En caso de existir dicho comercial se deberá devolver un error 409 indicando que ya existe un comercial con ese DNI.
 ![alt text](/images/error409Comercial.png)
+Una vez implementada la comprobación, si ejecutas la llamada *Ejercicio 8 - Graba comercial duplicado* deberás recibir el mensaje de error con el código 409.
+
+## Ejercicio 9
+Para este ejercicio deberás implementar el método **SaveVivienda**, puedes consultar las llamada de ejemplo "Ejercicio 9". En el campo de información del comercial figura el DNI del mismo, por lo que será necesario comprobar en primer lugar que el comercial definido existe en nuestra base de datos recuperando su ID, en el caso de que no exista se deberá retornar un error indicando que el comercial asignado no existe y la vivienda no se deberá grabar.
+En el caso de la ciudad también deberemos comprobar que exista y si no existe se debera crear y asignar a la vivienda antes de grabar la vivienda.
+Para recuperar los ID deberás realizar la consulta SQL utilizando la funcionalidad de Embedded SQL.
+
+El formato del JSON enviado a nuestro servicio será el siguiente:
+>{
+>    
+>   "Habitaciones": 3,
+>
+>   "Ascensor": "1",
+>
+>   "Garage": "0",
+>
+>   "CodigoPostal": "28040",
+>
+>   "Superficie": 93,
+>
+>   "Aseos": 2,
+>
+>   "Precio": 350000,
+>
+>   "Ciudad": "Badajoz",
+>
+>   "Comercial": "12345678A"
+>
+>}
+
+Recuerda que tienes dos opciones para asignar la ciudad y el comercial a la vivienda, puedes asignar directamente las instancias del comercial y la ciudad a la vivienda o bien únicamente informar el identificador de ambas, puedes consultar como hacer esto último [aquí](https://docs.intersystems.com/irislatest/csp/docbook/DocBook.UI.Page.cls?KEY=GOBJ_propmethods#GOBJ_propmethods_accessors_obj).
+
+# 4. Streams
+
+Finalmente vamos a repasar el manejo de Streams, como has podido ver durante la formación los Streams son un tipo de objetos que nos permiten el manejo de grandes volúmenes de datos que no podríamos manejar como String. Este tipo de datos nos resultará muy útil de cara a recibir documentos, ya sean en formato binario o de caracteres y poder trabajar con ellos sin vernos limitado por el tamaño máximo de las variables de tipo String.
+Podéis consultar la documentación oficial con ejemplos de manejo de los Streams [aquí](https://docs.intersystems.com/healthconnect20231/csp/docbook/DocBook.UI.Page.cls?KEY=GOBJ_propstream).
+
+## Ejercicio 10
+Para nuestro proyecto se nos ha solicitado que almacenemos en nuestro servidor los planos del catastro de cada vivienda, para ello se nos va a remitir una llamada de tipo POST a nuestro servicio REST en el que se nos remitirá en formato JSON el documento en PDF en Base64 y el identificador de la vivienda al que se lo debemos asignar.
+
+Aquí tienes un ejemplo del formato del JSON que se recibirá:
+>{
+>
+>   "id": "1",
+>
+>   "plano": "JVBERi0x..."
+>}
+
+Se deberá convertir el Stream recibido a un fichero pdf cuyo nombre será el identificador de la vivienda y que se ubicará en la ruta **/shared/durable/** del servidor.
+
+**Ejemplo**
+>/shared/durable/1.pdf
+
+Recuerda que la información que nos llega en el contenido de la variable **request** ya está en formato Stream, por lo que puedes mapear el objeto recibido directamente sin necesidad de leer el contenido.
