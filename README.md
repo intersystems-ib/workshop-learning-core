@@ -11,6 +11,8 @@ En este tema vamos a repasar como definir clases y propiedades así como definir
 ## 1.1. Definición de clases
 Primeramente vamos a implementar las clases cuyo esqueleto puedes encontrar en la ruta  **/src/LEARNING/Object**
 
+## Ejercicio 1
+
 ### Certificado
 Clase de tipo %SerialObject que contendrá la información del certificado energético para cada vivienda.
 - Clasificación: de tipo String.
@@ -39,7 +41,7 @@ Información de la ciudad en la que se ubica la vivienda.
 - Nombre: de tipo String.
 - Población: de tipo Integer.
 
-## Ejercicio 1
+## Ejercicio 2
 Crea dos instancias de la clase Vivienda, la primera con el código postal 28001 y la segunda con el código postal 28008, no es necesario que definas ninguna propiedad más.
 
 **Ejemplo**
@@ -64,23 +66,19 @@ Puedes copiar el cálculo del precio de aquí:
 **Cálculo**
 > set ..PrecioObjetivo = ..Superficie * ^Ens.LookupTable("ValorZona",..CodigoPostal) 
 >
-> if (..Garaje)
->
-> {
+> if (..Garaje) {
 >
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.1
 >
 > }
 >
-> if (..Ascensor)
->
-> {
+> if (..Ascensor) {
 >
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.05
 >
 > }
 
-## Ejercicio 2
+## Ejercicio 3
 Debes crear una nueva instancia de la clase **LEARNING.Object.Vivienda** con los siguientes valores en sus propiedades:
 - Habitaciones: 3
 - Ascensor: 1
@@ -99,7 +97,7 @@ A continuación debes obtener el precio estimado para dicha vivienda. Si lo has 
 >
 > 536844
 
-## Ejercicio 3
+## Ejercicio 4
 Ahora vamos a probar a crear un método de clase que nos sirva para consultar el precio medio del suelo para un determinado código postal. El método de clase se denominará **ConsultaPrecioSuelo** y admitirá un parámetro **codigoPostal** de tipo String y una variable por referencia **resultadoPrecio** de tipo Integer en la que el método nos devolverá el resultado de la consulta.
 Para obtener el valor de la Lookup table sólo tienes que llamar al siguiente método:
 
@@ -127,24 +125,20 @@ Nuestra inmobiliaria quiere empezar a gestionar un tipo de viviendas más especi
 También se necesita sobrescribir el método de instancia **CalculaPrecioEstimado** para que al precio calculado se le sume el criterio de la piscina y el jardín. Para ello se sumará al cálculo del precio estimado el resultado de la siguiente operación:
 
 **Sobreescritura**
-> if (..Piscina)
->
-> {
+> if (..Piscina) {
 >
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.2
 >
 > }
 >
-> if (..Jardin)
->
-> {
+> if (..Jardin) {
 >
 >   set ..PrecioObjetivo = ..PrecioObjetivo * 1.15
 >
 > }
 
 
-## Ejercicio 4
+## Ejercicio 5
 Vamos a crear un nuevo objeto, en este caso de la clase **LEARNING.Object.Chalet** con las siguientes características:
 - Habitaciones: 4
 - Ascensor: 0
@@ -169,7 +163,7 @@ Con estos datos y el método de instancia **CalculaPrecioEstimado** sobreescrito
 Para nuestra aplicación necesitamos relacionar las viviendas en nuestra base de datos con los comerciales que van a ser los encargados de gestionar su venta, de tal forma que una vivienda corresponda a un único comercial (y así evitar conflictos entre los comerciales) y un comercial pueda tener asignadas múltiples viviendas.
 Recuerda que las relaciones se definen con la palabra clave **Relationship**, en las relaciones One-to-Many es necesario que las instancias de las clases relacionadas estén persistidas antes de guardar la relación, mientras que en las relaciones Parent-to-Children se requiere que la clase padre exista y la referencia en el hijo esté informada.
 
-## Ejercicio 5
+## Ejercicio 6
 Deberás crear una relación que permita registrar la vinculación entre las clases Comercial y Vivienda de tal forma que permita conocer a qué comercial está asignada la vivienda y podamos obtener su lista de viviendas asignadas. Ten en cuenta que el sistema debe permitir registrar viviendas sin vinculación a ningún comercial.
 También debes relacionar las ciudades con las viviendas, en este caso tampoco es obligatorio que la ciudad esté informada antes de grabar la vivienda.
 
@@ -219,12 +213,12 @@ Nuestro proyecto debe de proporcionar la posibilidad de recuperar la informació
 ## 2.2. Invocando llamadas PUT/POST
 Al igual que en el caso de las llamadas GET ya disponemos en **LEARNING.WS.Service** de unos enrutamientos configurados para gestionar llamadas POST. Lo particular de estas llamadas es que la información que se remite a nuestro sistema viene en el cuerpo de la llamada. En los ejemplos incluidos estos datos vienen en formato JSON. Es recomendable hacer uso de variables de tipo **DynamicObject**
 
-## Ejercicio 6
+## Ejercicio 7
 Implementa el método GetVivienda para poder retornar a POSTMAN los datos de la vivienda registrada con identificador 1. No olvides retornar la información de la vivienda en formato JSON. El resultado debería ser parecido a esta imagen:
 ![alt text](/images/getVivienda.png)
 Una vez implementado deberás ejecutar desde POSTMAN la llamada *Ejercicio 6 - Recupera vivienda*.
 
-## Ejercicio 7
+## Ejercicio 8
 Implementa los métodos para poder registrar a los comerciales **SaveComercial** a las ciudades **SaveCiudad**. Puedes ver los atributos de objeto que se enviará desde el POSTMAN consultando el body de la llamada:
 ![alt text](/images/saveVivienda.png)
 Cando concluyas la implementación deberás lanzar las llamadas *Ejercicio 7 - Graba comercial* y *Ejercicio 7 - Graba vivienda*
@@ -234,12 +228,12 @@ Cando concluyas la implementación deberás lanzar las llamadas *Ejercicio 7 - G
 En este tema vas a poder repasar como ejecutar consultas de SQL sobre nuestra base de datos utilizando Dynamic SQL. Podrás ver como definir una SQL, utilizar la clase **%SQL.Statement** para la preparación y ejecución de la query y finalmente recorrer los resultados de la consulta.
 Para nuestro proyecto va a ser necesario controlar que no registremos valores duplicados en el sistema, por lo que será necesario realizar una validación previa al registro que se realiza desde los métodos que reciben llamadas POST en nuestra clase **LEARNING.WS.Service**. También vamos a lanzar consultas mediante Embedded SQL para obtener identificadores de los objetos persistidos en nuestra base de datos.
 
-## Ejercicio 8
+## Ejercicio 9
 Deberás incluir una comprobación previa para el método **SaveComercial** de la clase **LEARNING.WS.Service** para validar que no existe ningún comercial ya registrado con el DNI. Deberás utilizar la funcionalidad de Dynamic SQL para preparar y ejecutar la consulta. En caso de existir dicho comercial se deberá devolver un error 409 indicando que ya existe un comercial con ese DNI.
 ![alt text](/images/error409Comercial.png)
 Una vez implementada la comprobación, si ejecutas la llamada *Ejercicio 8 - Graba comercial duplicado* deberás recibir el mensaje de error con el código 409.
 
-## Ejercicio 9
+## Ejercicio 10
 Para este ejercicio deberás implementar el método **SaveVivienda**, puedes consultar las llamada de ejemplo "Ejercicio 9". En el campo de información del comercial figura el DNI del mismo, por lo que será necesario comprobar en primer lugar que el comercial definido existe en nuestra base de datos recuperando su ID, en el caso de que no exista se deberá retornar un error indicando que el comercial asignado no existe y la vivienda no se deberá grabar.
 En el caso de la ciudad también deberemos comprobar que exista y si no existe se debera crear y asignar a la vivienda antes de grabar la vivienda.
 Para recuperar los ID deberás realizar la consulta SQL utilizando la funcionalidad de Embedded SQL.
@@ -274,7 +268,7 @@ Recuerda que tienes dos opciones para asignar la ciudad y el comercial a la vivi
 Finalmente vamos a repasar el manejo de Streams, como has podido ver durante la formación los Streams son un tipo de objetos que nos permiten el manejo de grandes volúmenes de datos que no podríamos manejar como String. Este tipo de datos nos resultará muy útil de cara a recibir documentos, ya sean en formato binario o de caracteres y poder trabajar con ellos sin vernos limitado por el tamaño máximo de las variables de tipo String.
 Podéis consultar la documentación oficial con ejemplos de manejo de los Streams [aquí](https://docs.intersystems.com/healthconnect20231/csp/docbook/DocBook.UI.Page.cls?KEY=GOBJ_propstream).
 
-## Ejercicio 10
+## Ejercicio 11
 Para nuestro proyecto se nos ha solicitado que almacenemos en nuestro servidor los planos del catastro de cada vivienda, para ello se nos va a remitir una llamada de tipo POST a nuestro servicio REST en el que se nos remitirá en formato JSON el documento en PDF en Base64 y el identificador de la vivienda al que se lo debemos asignar.
 
 Aquí tienes un ejemplo del formato del JSON que se recibirá:
@@ -283,6 +277,7 @@ Aquí tienes un ejemplo del formato del JSON que se recibirá:
 >   "id": "1",
 >
 >   "plano": "JVBERi0x..."
+>
 >}
 
 Se deberá convertir el Stream recibido a un fichero pdf cuyo nombre será el identificador de la vivienda y que se ubicará en la ruta **/shared/durable/** del servidor.
