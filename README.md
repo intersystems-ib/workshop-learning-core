@@ -24,7 +24,7 @@ Dicha clase contendrá la información de las viviendas a la venta que son gesti
 - Habitaciones: de tipo Integer.
 - Ascensor: de tipo Boolean.
 - Garaje: de tipo Boolean.
-- CodigoPosta: de tipo String.
+- CodigoPostal: de tipo String.
 - Superficie: de tipo Integer.
 - Aseos: de tipo Integer.
 - Precio: de tipo Integer.
