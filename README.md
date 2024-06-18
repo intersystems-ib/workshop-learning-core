@@ -35,7 +35,7 @@ Dicha clase contendrá la información de las viviendas a la venta que son gesti
 Responsable de guardar la información del comercial responsable de la venta de las viviendas.
 - Nombre: de tipo String.
 - Apellidos: de tipo String.
-- DNI: de tipo Integer.
+- DNI: de tipo String.
 
 ### Ciudad
 Información de la ciudad en la que se ubica la vivienda.
