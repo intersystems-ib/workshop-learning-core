@@ -103,7 +103,7 @@ Ahora vamos a probar a crear un método de clase que nos sirva para consultar el
 Para obtener el valor de la Lookup table sólo tienes que llamar al siguiente método:
 
 **Consulta**
-> ^Ens.LookupTable("ValorZona",..VariablePorReferencia)
+> ^Ens.LookupTable("ValorZona",variablePorReferencia)
 
 Si has implementado correctamente el método los siguientes comandos deberían devolveros el mismo resultado:
 
