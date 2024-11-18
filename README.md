@@ -30,6 +30,7 @@ Dicha clase contendrá la información de las viviendas a la venta que son gesti
 - Precio: de tipo Integer.
 - PrecioObjetivo: de tipo Integer.
 - CertificadoEnergetico: de tipo Certificado.
+- CodigoPostal: de tipo String.
 
 ### Comercial
 Responsable de guardar la información del comercial responsable de la venta de las viviendas.
