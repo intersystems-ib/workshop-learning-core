@@ -1,7 +1,7 @@
 {
     "objectscript.conn": {
         "server": "docker",
-        "active": true,
+        "active": false,
         "host": "localhost",
         "port": 52774,
         "ns": "LEARNING",

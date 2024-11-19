@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Ejercicio 6 - Recupera vivienda",
+			"name": "Ejercicio 7 - Recupera vivienda",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -32,7 +32,7 @@
 			"response": []
 		},
 		{
-			"name": "Ejercicio 7 - Graba comercial",
+			"name": "Ejercicio 8 - Graba comercial",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -65,7 +65,7 @@
 			"response": []
 		},
 		{
-			"name": "Ejercicio 7 - Graba ciudad",
+			"name": "Ejercicio 8 - Graba ciudad",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -98,7 +98,7 @@
 			"response": []
 		},
 		{
-			"name": "Ejercicio 8 - Graba comercial duplicado",
+			"name": "Ejercicio 9 - Graba comercial duplicado",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -131,7 +131,7 @@
 			"response": []
 		},
 		{
-			"name": "Ejercicio 9 - Graba vivienda - Error comercial",
+			"name": "Ejercicio 10 - Graba vivienda - Error comercial",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -164,7 +164,7 @@
 			"response": []
 		},
 		{
-			"name": "Ejercicio 9 - Graba vivienda - Nueva ciudad",
+			"name": "Ejercicio 10 - Graba vivienda - Nueva ciudad",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -197,7 +197,7 @@
 			"response": []
 		},
 		{
-			"name": "Ejercicio 10 - Graba plano",
+			"name": "Ejercicio 11 - Graba plano",
 			"request": {
 				"auth": {
 					"type": "noauth"

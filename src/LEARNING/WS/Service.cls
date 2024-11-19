@@ -46,10 +46,8 @@ ClassMethod GetVivienda(id As %Integer) As %Status
     
     } Catch (ex) {
         Do ##class(%REST.Impl).%SetStatusCode("400")
-        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
-        return {"errormessage": "Client error"}
+        return ex.DisplayString()
     }
-    Quit $$$OK
 }
 
 // Class method to receive real estate data to persist in our database
@@ -63,8 +61,7 @@ ClassMethod SaveVivienda() As %Status
     
     } Catch (ex) {
         Do ##class(%REST.Impl).%SetStatusCode("400")
-        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
-        return {"errormessage": "Client error"}
+        return ex.DisplayString()
     }
 }
 
@@ -77,8 +74,7 @@ ClassMethod SavePlano() As %Status
     
     } Catch (ex) {
         Do ##class(%REST.Impl).%SetStatusCode("400")
-        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
-        return {"errormessage": "Client error"}
+        return ex.DisplayString()
     }
 }
 
@@ -91,8 +87,7 @@ ClassMethod SaveComercial() As %Status
     
     } Catch (ex) {
         Do ##class(%REST.Impl).%SetStatusCode("400")
-        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
-        return {"errormessage": "Client error"}
+        return ex.DisplayString()
     }
 }
 
@@ -105,8 +100,7 @@ ClassMethod SaveCiudad() As %Status
     
     } Catch (ex) {
         Do ##class(%REST.Impl).%SetStatusCode("400")
-        Do ##class(%REST.Impl).%WriteResponse(ex.DisplayString())
-        return {"errormessage": "Client error"}
+        return ex.DisplayString()
     }
 }
 
